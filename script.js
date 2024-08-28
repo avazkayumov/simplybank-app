@@ -202,5 +202,16 @@ btnClose.addEventListener('click', function(e) {
 
   inputCloseNickname.value = ""
   inputClosePin.value = ""
+})
 
+btnLoan.addEventListener('click', function(e) {
+  e.preventDefault()
+  
+  const loanAmount = Number(inputLoanAmount.value)
+
+  if(loanAmount > 0 && currentAccount.transactions.some(trans => trans >= (loanAmount * 10) / 100)) {
+    currentAccount.transactions.push(loanAmount)
+    updateUI(currentAccount)
+  }
+  inputLoanAmount.value = ''
 })
